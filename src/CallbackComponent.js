@@ -18,7 +18,7 @@ class CallbackComponent extends React.Component {
   };
 
   componentDidMount() {
-    this.props.userManager.signinRedirectCallback()
+    this.props.userManager.signinPopupCallback()
       .then((user) => this.onRedirectSuccess(user))
       .catch((error) => this.onRedirectError(error));
   }

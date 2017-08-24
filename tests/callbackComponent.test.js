@@ -8,7 +8,7 @@ import { redirectSuccess } from '../src/actions';
 describe('<CallbackComponent />', () => {
   let userManagerMock;
   let storeMock;
-  let signinRedirectCallbackStub;
+  let signinPopupCallbackStub;
   let thenStub;
   let catchStub;
   let props;
@@ -22,14 +22,14 @@ describe('<CallbackComponent />', () => {
     catchStub = sinon.stub();
     thenStub = sinon.stub().returns({ catch: catchStub });
     removeItemStub = sinon.stub();
-    signinRedirectCallbackStub = sinon.stub().returns({
+    signinPopupCallbackStub = sinon.stub().returns({
       then: thenStub
     });
     successCallbackStub = sinon.stub();
     errorCallbackStub = sinon.stub();
 
     userManagerMock = {
-      signinRedirectCallback: signinRedirectCallbackStub,
+      signinPopupCallback: signinPopupCallbackStub,
     };
 
     props = { successCallback: successCallbackStub, errorCallback: errorCallbackStub, userManager: userManagerMock };
@@ -41,7 +41,7 @@ describe('<CallbackComponent />', () => {
   it('should call the userManager on componentDidMount', () => {
     component.componentDidMount();
 
-    expect(signinRedirectCallbackStub.called).toEqual(true);
+    expect(signinPopupCallbackStub.called).toEqual(true);
     expect(thenStub.called).toEqual(true);
     expect(catchStub.called).toEqual(true);
   });
